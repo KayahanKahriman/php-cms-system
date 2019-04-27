@@ -48,7 +48,8 @@ class view
     public function modulCreate()
     {
         if ($this->tempConf["temp"]["engine"] == "php") {
-            require_once(TEMPDIR . 'tpl/modul/' . $this->module->m[tpl]);
+            require_once(TEMPDIR . 'tpl/modul/' . $this->viewData["MODUL"]["tpl"]);
+            exit;
         } else {
             $this->tm = new \MG\Temp\engine($this->tempConf["temp"]["engine"], TEMPDIR . $this->tempConf["temp"]["compile"]);
         }

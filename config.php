@@ -1,10 +1,4 @@
 <?php
-/**
- * Created by PhpStorm.
- * User: webcozumevi
- * Date: 6.04.2019
- * Time: 10:27
- */
 
 if (!session_id()) session_start();
 error_reporting(E_ALL & ~E_WARNING & ~E_NOTICE & ~E_DEPRECATED & ~E_STRICT);
