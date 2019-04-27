@@ -1,6 +1,9 @@
 #phpstorm
 .idea
 
-#cms özel dosyalar
+#cms tema özel dosyalar
 sys/src
 system/sys/src
+
+#lib template engine
+core/lib/smarty
