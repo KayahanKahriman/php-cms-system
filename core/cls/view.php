@@ -26,9 +26,58 @@ class view
 
     public function html()
     {
-        $html = $this->tm->getHtml(MODULTPLDIR . $this->viewData["MODUL"]["tpl"]);
-        print $html;
+
+        $this->seo()
+            ->header();
+
+        $this->html .= $this->tm->getHtml(MODULTPLDIR . $this->viewData["MODUL"]["tpl"]);
+        $this->footer();
+
+        print $this->html;
         exit;
+    }
+
+    public function seo()
+    {
+        $this->seo = array(
+            "HEADER" => array(
+                "Lang" => '',
+                "ThemeColor" => '',
+                "BaseUrl" => ROOTDIR . BASEDIR,
+                "Title" => '',
+                "Desc" => '',
+                "Keyw" => '',
+                "Copy" => '',
+                "Autr" => '',
+                "ShortIcon" => '',
+                "SiteMap" => '',
+                "GoogleVerification" => '',
+                "GoogleAnalitics" => '',
+                "GoogleBackregister" => '',
+                "Header" => '',
+                "GoogleRemarketing" => '',
+                "GoogleBackorder" => '',
+                "Footer" => '',
+            ),
+        );
+        return $this;
+    }
+
+    public function header()
+    {
+
+        $this->html = $this->tm->getHtml(TEMPTPL . 'core/tpl/head.tpl',$this->seo);
+        $this->html .= $this->library()->jsCss('CSS');
+        if ($this->viewData["MODUL"]["config"]["header"]) $this->html .= $this->tm->getHtml(TEMPTPL . 'inc/header.tpl');
+        return $this;
+    }
+
+    public function footer()
+    {
+        if ($this->viewData["MODUL"]["config"]["header"]) $this->html .= $this->tm->getHtml(TEMPTPL . 'inc/footer.tpl');
+        $this->html .= $this->library()->jsCss('JS');
+        $this->html .= $this->tm->getHtml(TEMPTPL . 'core/tpl/foot.tpl',$this->seo);
+        return $this;
     }
 
     public function engine()
@@ -60,8 +109,8 @@ class view
     public function library()
     {
 
-        if (file_exists(ROOT_FOLDER . $this->dir["TEMA"] . 'conf.php')) {
-            require_once(ROOT_FOLDER . $this->dir["TEMA"] . 'conf.php');
+        if (file_exists(TEMPDIR . 'conf.php')) {
+            require_once(TEMPDIR . 'conf.php');
         }
 
         if (count($this->tempConf[lib][js][header]) > 0) foreach ($this->tempConf[lib][js][header] as $k => $v) $this->library[JS][HEADER][] = $v;
@@ -81,11 +130,10 @@ class view
                                     $path = ROOTDIR . 'core/' . $v;
                                 }
                             } else {
-
-                                if (file_exists(ROOT_FOLDER . $this->dir["MODEL"] . 'src/theme/library/' . $tip . '/' . $v)) {
-                                    $path = ROOTDIR . $this->dir["MODEL"] . 'src/theme/library/' . $tip . '/' . $v;
+                                if (file_exists(TEMPDIR . 'library/' . $tip . '/' . $v)) {
+                                    $path = ROOTDIR . BASEDIR . $tip . '/' . $v;
                                 } else if (file_exists(ROOT_FOLDER . 'library/' . $tip . '/' . $v)) {
-                                    $path = ROOTDIR . 'library/' . $tip . '/' . $v;
+                                    $path = ROOTDIR . BASEDIR . $tip . '/' . $v;
                                 }
                             }
                         } else {

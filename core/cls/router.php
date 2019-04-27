@@ -66,12 +66,18 @@ class router
         define(PAGE, $this->SYS["LOCATION"]["PAGE"]);
 
         define(TEMP, '/sys/src/temp/t1/');
+        define(BASEDIR, MODEL.TEMP . 'library/');
 
         define(TEMPDIR, ROOT_FOLDER . MODEL . TEMP);
-        define(MODULTPLDIR, ROOT_FOLDER . MODEL . TEMP . 'tpl/modul/');
+        define(TEMPTPL, ROOT_FOLDER . MODEL . TEMP . 'tpl/');
+
+        define(MODULTPLDIR, TEMPTPL . 'modul/');
 
         define(MODUL, PAGE . '/' . PAGE . '.php');
         define(MODULDIR, ROOT_FOLDER . MODEL . '/' . 'sys/modul/' . MODUL);
+
+
+
 
         return $this;
     }

@@ -12,7 +12,17 @@ class login
 {
     public function __construct()
     {
-        $this->view();
+        $this->config()
+            ->view();
+    }
+
+    public function config()
+    {
+        $this->m[config]=array(
+            "header" => 0,
+            "footer" => 0,
+        );
+        return $this;
     }
 
     public function view()
