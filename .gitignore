@@ -1,0 +1,6 @@
+#phpstorm
+.idea
+
+#cms özel dosyalar
+sys/src
+system/sys/src
