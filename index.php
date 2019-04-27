@@ -5,4 +5,6 @@
  * Date: 27.04.2019
  * Time: 09:03
  */
-print 'site';
+
+require_once('config.php');
+require_once(ROOT_FOLDER . 'core/inc/cms.php');
